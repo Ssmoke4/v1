@@ -44,3 +44,8 @@ body
 
 id целое положительное число от 1 - 2147483648
 balance: целое положительное число от 1 - 2147483648
+
+
+![image](https://user-images.githubusercontent.com/33143840/167897656-e57c6a45-14a2-437d-969a-dd6b4d2490fb.png)
+
+
