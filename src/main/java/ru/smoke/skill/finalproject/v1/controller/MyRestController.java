@@ -56,8 +56,6 @@ public class MyRestController {
             employee.setBalance(Balance-TakeMoney);
             employeeService.saveEmployee(employee);
             saveOperation(employee.getId(), 1,employee.getBalance());
-//            Operations operations = new Operations(employee.getId(), 1,employee.getBalance());
-//            operationsService.Saveoperation(operations);
             return "Успешно";
         }return "Ошибка 0 {Недостаточно средств}";
     }
@@ -81,8 +79,6 @@ public class MyRestController {
             employee.setBalance(Balance+PutMoney);
             employeeService.saveEmployee(employee);
             saveOperation(employee.getId(), 2,employee.getBalance());
-//            Operations operations = new Operations(employee.getId(), 2,employee.getBalance());
-//            operationsService.Saveoperation(operations);
 
         return "1 Успешно";
     }

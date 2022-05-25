@@ -25,9 +25,4 @@ public class OperationsServiceImpl implements OperationsService{
 
     }
 
-    @Override
-    public List<Operations> getOperationList(Date start, Date end) {
-        List <Operations> operations = operationRepo.findByDateBetween(start,end);
-        return operations;
-    }
 }

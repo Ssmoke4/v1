@@ -10,7 +10,5 @@ import java.util.List;
 public interface OperationsService {
 
     void Saveoperation(Operations oper);
-    List<Operations> getOperationList(Date start, Date end);
-
 
 }
