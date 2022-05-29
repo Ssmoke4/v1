@@ -1,12 +1,12 @@
 package ru.smoke.skill.finalproject.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "operation")
@@ -27,9 +27,8 @@ public class Operations {
     @Column
     private int sum_operation;
 
-//    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
-//    @Column
-//    private int operation_date;
+    @Column
+    private Date operation_date;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "subscriber_id")

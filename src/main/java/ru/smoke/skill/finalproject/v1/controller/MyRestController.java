@@ -9,6 +9,9 @@ import ru.smoke.skill.finalproject.v1.service.EmployeeService;
 import ru.smoke.skill.finalproject.v1.service.OperationsService;
 
 import javax.persistence.EntityNotFoundException;
+import javax.xml.bind.SchemaOutputResolver;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -91,5 +94,20 @@ public class MyRestController {
         Operations operations = new Operations(id,type,balance);
         operationsService.Saveoperation(operations);
     }
+//    @GetMapping ("/getOperations")
+//    public List<Operations> getOperations(Date start, Date end){
+//        start = Date.valueOf("2022-05-13");
+//        end = Date.valueOf("2022-05-20");
+//        List<Operations> result =operationsService.getOperationsByDate(start,end);
+//        return result;
+//    }
+    @GetMapping("/getOperations/{id}/date")
+    public List<Operations> test(@PathVariable int id,
+                                 @RequestParam ("dateFrom") Date dateFrom,
+                                 @RequestParam ("dateTo") Date dateTo){
+        System.out.println(dateFrom.toString());
+        return operationsService.findSubscriberById(id, dateFrom, dateTo);
+    }
+
 
 }
