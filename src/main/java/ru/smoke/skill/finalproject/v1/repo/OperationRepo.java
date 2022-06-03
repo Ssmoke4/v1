@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public interface OperationRepo extends JpaRepository<Operations, Integer> {
-//    public List<Operations> findByDateBetween(Date start, Date end);
 
     @Query("from Operations o where o.subscriber_id=:id and o.operation_date>=:dateFrom and o.operation_date< :dateTo")
     List<Operations> findSubscriberById(@Param("id") Integer id,

@@ -48,4 +48,20 @@ balance: целое положительное число от 1 - 2147483648
 
 ![image](https://user-images.githubusercontent.com/33143840/167897656-e57c6a45-14a2-437d-969a-dd6b4d2490fb.png)
 
+_____________________________________________________________
+Этап 2
+Создана таблица Operations в которой поле subscriber_id связано 
+с таблицой subscribers, полем id
+поле date заполняется датой добавления записи в таблицу автоматически.
+type_operation, subscriber_id, sum_operation заполняется из запроса в Java
 
+В контроллере добавлен метод который добавляет запись в новую таблицу
+по каждой операции.
+
+добавлен метод GetOperations
+вида GET http://localhost:8081/getOperations/{id}/date&dateFrom=yyyy.mm.dd&dateTo=yyyy.mm.dd
+
+где id = id пользователя
+dateFrom, dateTo дата выборки 
+ToDo доработать метод с незаполненными датами.
+Восстановить БД, на новом ПК    

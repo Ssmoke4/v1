@@ -86,10 +86,7 @@ public class MyRestController {
         return "1 Успешно";
     }
 
-    public List<Operations> getOperationList(){
-        return null;
 
-    }
     public void saveOperation(int id,int type,int balance){
         Operations operations = new Operations(id,type,balance);
         operationsService.Saveoperation(operations);
