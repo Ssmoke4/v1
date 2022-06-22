@@ -18,13 +18,5 @@ public class Employee {
     private int id;
     @Column
     private int balance;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-//    private List<Operations> operationsList;
-//
-//   public void AddOperationsToEmployee(Operations oper){
-//       if (operationsList == null){
-//           operationsList = new ArrayList<>();
-//       }
-//       operationsList.add(oper);
-//   }
+
 }

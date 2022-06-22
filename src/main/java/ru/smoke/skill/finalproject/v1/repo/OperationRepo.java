@@ -16,6 +16,6 @@ public interface OperationRepo extends JpaRepository<Operations, Integer> {
 
     @Query("from Operations o where o.subscriber_id=:id and o.operation_date>=:dateFrom and o.operation_date< :dateTo")
     List<Operations> findSubscriberById(@Param("id") Integer id,
-                                        @Param("dateFrom")Date dateFrom,
-                                        @Param("dateTo")Date dateTo);
+                                        @Param("dateFrom")LocalDate dateFrom,
+                                        @Param("dateTo")LocalDate dateTo);
 }

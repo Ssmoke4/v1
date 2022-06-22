@@ -7,6 +7,7 @@ import org.apache.tomcat.jni.Local;
 import javax.persistence.*;
 import java.awt.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "operation")
@@ -28,11 +29,8 @@ public class Operations {
     private int sum_operation;
 
     @Column
-    private Date operation_date;
+    private LocalDate operation_date;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "subscriber_id")
-//    private Employee employee;
 
     public Operations(int subscriber_id, int type_operation, int sum_operation) {
         this.subscriber_id = subscriber_id;

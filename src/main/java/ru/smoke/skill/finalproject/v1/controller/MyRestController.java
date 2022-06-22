@@ -22,13 +22,12 @@ public class MyRestController {
     @Autowired
     private OperationsService operationsService;
 
-    @GetMapping("/Employees")
+    @GetMapping("/employees")
     public List<Employee> AllEmployees(){
-        List<Employee> employees = employeeService.getAllEmployees();
-        return employees;
+        return employeeService.getAllEmployees();
     }
 
-    @GetMapping ("/getBalance/{id}")
+    @GetMapping ("/getbalance/{id}")
     public String getBalance(@PathVariable int id){
         try {
             saveOperation(id,0,employeeService.getBalance(id));
@@ -39,11 +38,10 @@ public class MyRestController {
             return "Ошибка "+ -1 + " "+ "{" + e + "}";
         }
     }
-    @PostMapping("/takeMoney")
+    @PostMapping("/takemoney")
     public String takeMoney(@RequestBody Employee employee){
         int Balance = 0;
-        try {
-            Balance = employeeService.getBalance(employee.getId());
+        try {Balance = employeeService.getBalance(employee.getId());
         } catch(EntityNotFoundException e)
         {
             return "0 { Абонента с таким ID не найден }";
@@ -62,7 +60,7 @@ public class MyRestController {
             return "Успешно";
         }return "Ошибка 0 {Недостаточно средств}";
     }
-    @PostMapping("/putMoney")
+    @PostMapping("/putmoney")
     @ResponseStatus(HttpStatus.CREATED)
     public String putMoney(@RequestBody Employee employee){
         int Balance = 0;
@@ -91,18 +89,10 @@ public class MyRestController {
         Operations operations = new Operations(id,type,balance);
         operationsService.Saveoperation(operations);
     }
-//    @GetMapping ("/getOperations")
-//    public List<Operations> getOperations(Date start, Date end){
-//        start = Date.valueOf("2022-05-13");
-//        end = Date.valueOf("2022-05-20");
-//        List<Operations> result =operationsService.getOperationsByDate(start,end);
-//        return result;
-//    }
-    @GetMapping("/getOperations/{id}/date")
+    @GetMapping("/getoperations/{id}/date")
     public List<Operations> test(@PathVariable int id,
-                                 @RequestParam ("dateFrom") Date dateFrom,
-                                 @RequestParam ("dateTo") Date dateTo){
-        System.out.println(dateFrom.toString());
+                                 @RequestParam ("dateFrom") LocalDate dateFrom,
+                                 @RequestParam ("dateTo") LocalDate dateTo){
         return operationsService.findSubscriberById(id, dateFrom, dateTo);
     }
 

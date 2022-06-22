@@ -14,11 +14,6 @@ public class OperationsServiceImpl implements OperationsService{
     @Autowired
     OperationRepo operationRepo;
 
-//    @Override
-//    public List<Operations> getAllOperations(Integer id) {
-//        List<Operations> operations = operationRepo.findBySubscriber_id(id);
-//        return operations;
-//    }
 
     @Override
     public void Saveoperation(Operations oper) {
@@ -27,15 +22,8 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
 
-//    @Override
-//    public List<Operations> getOperationsByDate(Date start, Date end) {
-//        List<Operations> result = operationRepo.getOperationsByOperation_dateBetween(start, end);
-//        return result;
-//    }
-
-
     @Override
-    public List<Operations> findSubscriberById(int id, Date dateFrom, Date dateTo) {
+    public List<Operations> findSubscriberById(int id, LocalDate dateFrom, LocalDate dateTo) {
         List<Operations> result = operationRepo.findSubscriberById(id, dateFrom, dateTo);
         return result;
     }
