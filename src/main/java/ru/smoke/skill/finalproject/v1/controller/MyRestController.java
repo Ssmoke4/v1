@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.smoke.skill.finalproject.v1.model.Employee;
-import ru.smoke.skill.finalproject.v1.model.Operations;
+import ru.smoke.skill.finalproject.v1.model.Operation;
 import ru.smoke.skill.finalproject.v1.service.EmployeeService;
 import ru.smoke.skill.finalproject.v1.service.OperationsService;
 
@@ -86,11 +86,11 @@ public class MyRestController {
 
 
     public void saveOperation(int id,int type,int balance){
-        Operations operations = new Operations(id,type,balance);
+        Operation operations = new Operation(id,type,balance);
         operationsService.Saveoperation(operations);
     }
     @GetMapping("/getoperations/{id}/date")
-    public List<Operations> test(@PathVariable int id,
+    public List<Operation> test(@PathVariable int id,
                                  @RequestParam ("dateFrom") LocalDate dateFrom,
                                  @RequestParam ("dateTo") LocalDate dateTo){
         return operationsService.findSubscriberById(id, dateFrom, dateTo);

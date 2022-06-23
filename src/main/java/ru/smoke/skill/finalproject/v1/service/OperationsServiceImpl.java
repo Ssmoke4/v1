@@ -2,7 +2,7 @@ package ru.smoke.skill.finalproject.v1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.smoke.skill.finalproject.v1.model.Operations;
+import ru.smoke.skill.finalproject.v1.model.Operation;
 import ru.smoke.skill.finalproject.v1.repo.OperationRepo;
 
 import java.sql.Date;
@@ -16,15 +16,15 @@ public class OperationsServiceImpl implements OperationsService{
 
 
     @Override
-    public void Saveoperation(Operations oper) {
+    public void Saveoperation(Operation oper) {
         operationRepo.save(oper);
 
     }
 
 
     @Override
-    public List<Operations> findSubscriberById(int id, LocalDate dateFrom, LocalDate dateTo) {
-        List<Operations> result = operationRepo.findSubscriberById(id, dateFrom, dateTo);
+    public List<Operation> findSubscriberById(int id, LocalDate dateFrom, LocalDate dateTo) {
+        List<Operation> result = operationRepo.findSubscriberById(id, dateFrom, dateTo);
         return result;
     }
 }
