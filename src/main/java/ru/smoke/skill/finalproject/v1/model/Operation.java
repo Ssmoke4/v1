@@ -3,6 +3,7 @@ package ru.smoke.skill.finalproject.v1.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -13,25 +14,27 @@ public class Operation {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
-    private int subscriber_id;
+    private Long subscriber_id;
 
     @Column
     private int type_operation;
 
     @Column
-    private int sum_operation;
+    private BigDecimal sum_operation;
 
     @Column
     private LocalDate operation_date;
 
 
-    public Operation(int subscriber_id, int type_operation, int sum_operation) {
+    public Operation(Long subscriber_id, int type_operation, BigDecimal sum_operation, LocalDate operation_date) {
         this.subscriber_id = subscriber_id;
         this.type_operation = type_operation;
         this.sum_operation = sum_operation;
+        this.operation_date = operation_date;
+
     }
 
     @Override

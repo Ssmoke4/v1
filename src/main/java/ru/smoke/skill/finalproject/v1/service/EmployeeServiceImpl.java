@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.smoke.skill.finalproject.v1.model.Employee;
 import ru.smoke.skill.finalproject.v1.repo.EmployeeRepo;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
-    public Integer getBalance(Integer id) {
+    public BigDecimal getBalance(Long id) {
         Employee employee = employeeRepo.getById(id);
         return employee.getBalance();
     }

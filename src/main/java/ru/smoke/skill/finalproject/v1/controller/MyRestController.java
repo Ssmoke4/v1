@@ -9,10 +9,11 @@ import ru.smoke.skill.finalproject.v1.service.EmployeeService;
 import ru.smoke.skill.finalproject.v1.service.OperationsService;
 
 import javax.persistence.EntityNotFoundException;
-import javax.xml.bind.SchemaOutputResolver;
-import java.sql.Date;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+
+
 
 @RestController
 public class MyRestController {
@@ -28,7 +29,8 @@ public class MyRestController {
     }
 
     @GetMapping ("/getbalance/{id}")
-    public String getBalance(@PathVariable int id){
+    public String getBalance(@PathVariable Long id){
+        System.out.println(id);
         try {
             saveOperation(id,0,employeeService.getBalance(id));
             return ("Баланс абонента: "+employeeService.getBalance(id));
@@ -40,7 +42,7 @@ public class MyRestController {
     }
     @PostMapping("/takemoney")
     public String takeMoney(@RequestBody Employee employee){
-        int Balance = 0;
+        BigDecimal Balance = BigDecimal.valueOf(0);
         try {Balance = employeeService.getBalance(employee.getId());
         } catch(EntityNotFoundException e)
         {
@@ -49,12 +51,12 @@ public class MyRestController {
         catch (Exception e){
             return "ошибка 0 "+ "{"+ e +"}";
         }
-        int TakeMoney = employee.getBalance();
-        if (TakeMoney<=0){
+        BigDecimal TakeMoney = employee.getBalance();
+        if (TakeMoney.compareTo(BigDecimal.ZERO)<=0){
             return "0 {Не корректная сумма}";
         }
-        if(Balance>=TakeMoney){
-            employee.setBalance(Balance-TakeMoney);
+        if(Balance.compareTo(TakeMoney)==1){
+            employee.setBalance(Balance.subtract(TakeMoney));
             employeeService.saveEmployee(employee);
             saveOperation(employee.getId(), 1,employee.getBalance());
             return "Успешно";
@@ -63,7 +65,7 @@ public class MyRestController {
     @PostMapping("/putmoney")
     @ResponseStatus(HttpStatus.CREATED)
     public String putMoney(@RequestBody Employee employee){
-        int Balance = 0;
+        BigDecimal Balance = BigDecimal.valueOf(0);
         try {
             Balance = employeeService.getBalance(employee.getId());
         } catch(EntityNotFoundException e)
@@ -73,11 +75,11 @@ public class MyRestController {
         catch (Exception e){
             return "ошибка 0"+ "{ " + e +" }";
         }
-        int PutMoney = employee.getBalance();
-        if (PutMoney<=0){
+        BigDecimal PutMoney = employee.getBalance();
+        if (PutMoney.compareTo(BigDecimal.ZERO)<=0){
             return "0 Не корректная сумма вклада";
         }
-            employee.setBalance(Balance+PutMoney);
+            employee.setBalance(Balance.add(PutMoney));
             employeeService.saveEmployee(employee);
             saveOperation(employee.getId(), 2,employee.getBalance());
 
@@ -85,8 +87,9 @@ public class MyRestController {
     }
 
 
-    public void saveOperation(int id,int type,int balance){
-        Operation operations = new Operation(id,type,balance);
+    public void saveOperation(Long id, int type, BigDecimal balance){
+        LocalDate operation_date = LocalDate.now();
+        Operation operations = new Operation(id,type,balance, operation_date);
         operationsService.Saveoperation(operations);
     }
     @GetMapping("/getoperations/{id}/date")

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
 public List<Employee> findAllBy();
+public Employee getById(Long id);
 }
