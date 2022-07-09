@@ -15,7 +15,7 @@ import java.util.List;
 public interface OperationRepo extends JpaRepository<Operation, Integer> {
 
     @Query("from Operation o where o.subscriber_id=:id and o.operation_date>=:dateFrom and o.operation_date< :dateTo")
-    List<Operation> findSubscriberById(@Param("id") Integer id,
+    List<Operation> findSubscriberById(@Param("id") long id,
                                         @Param("dateFrom")LocalDate dateFrom,
                                         @Param("dateTo")LocalDate dateTo);
 }

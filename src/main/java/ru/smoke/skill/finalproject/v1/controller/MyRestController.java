@@ -93,10 +93,16 @@ public class MyRestController {
         operationsService.Saveoperation(operations);
     }
     @GetMapping("/getoperations/{id}/date")
-    public List<Operation> test(@PathVariable int id,
-                                 @RequestParam ("dateFrom") LocalDate dateFrom,
-                                 @RequestParam ("dateTo") LocalDate dateTo){
+    public List<Operation> test(@PathVariable long id,
+                                 @RequestParam (value = "dateFrom", required = false) LocalDate dateFrom,
+                                 @RequestParam (value = "dateTo", required = false) LocalDate dateTo){
         return operationsService.findSubscriberById(id, dateFrom, dateTo);
+    }
+
+    @PostMapping("/transfermoney")
+    void transferMoney(@RequestBody long senderId,@RequestBody long recieverId, @RequestBody BigDecimal Money){
+        System.out.println(senderId+" "+recieverId+" "+Money);
+        employeeService.transferMoney(recieverId,senderId,Money);
     }
 
 

@@ -7,7 +7,6 @@ import ru.smoke.skill.finalproject.v1.repo.EmployeeRepo;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -17,7 +16,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAllEmployees() {
         List<Employee> employees = employeeRepo.findAll();
-        System.out.println(employees);
         return employees;
     }
 
@@ -29,6 +27,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void saveEmployee(Employee employee) {
         employeeRepo.save(employee);
+    }
+
+    @Override
+    public void transferMoney(Long recieverId, Long senderId, BigDecimal Money) {
+        Employee senderEmployee = employeeRepo.getById(senderId);
+        Employee recieverEmployee = employeeRepo.getById(recieverId);
+        recieverEmployee.setBalance(recieverEmployee.getBalance().add(Money));
+        senderEmployee.setBalance(senderEmployee.getBalance().subtract(Money));
+        System.out.println("Успешно");
     }
 
 

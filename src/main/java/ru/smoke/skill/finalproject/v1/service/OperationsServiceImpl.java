@@ -23,7 +23,7 @@ public class OperationsServiceImpl implements OperationsService{
 
 
     @Override
-    public List<Operation> findSubscriberById(int id, LocalDate dateFrom, LocalDate dateTo) {
+    public List<Operation> findSubscriberById(long id, LocalDate dateFrom, LocalDate dateTo) {
         List<Operation> result = operationRepo.findSubscriberById(id, dateFrom, dateTo);
         return result;
     }

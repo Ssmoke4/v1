@@ -10,6 +10,6 @@ public interface OperationsService {
 
     void Saveoperation(Operation oper);
 //    List<Operations> getOperationsByDate(Date start, Date end);
-    List<Operation> findSubscriberById(int id, LocalDate dateFrom, LocalDate dateTo);
+    List<Operation> findSubscriberById(long id, LocalDate dateFrom, LocalDate dateTo);
 
 }
