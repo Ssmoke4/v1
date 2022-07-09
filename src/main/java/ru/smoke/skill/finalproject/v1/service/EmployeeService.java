@@ -10,5 +10,5 @@ public interface EmployeeService {
     public List<Employee> getAllEmployees();
     public BigDecimal getBalance(Long id);
     public void saveEmployee(Employee employee);
-    void transferMoney(Long recieverId, Long senderId, BigDecimal Money);
+    void transferMoney(Long recieverId, long senderId, BigDecimal Money);
 }

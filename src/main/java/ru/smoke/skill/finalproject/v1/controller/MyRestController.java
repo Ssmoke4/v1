@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.smoke.skill.finalproject.v1.model.Employee;
 import ru.smoke.skill.finalproject.v1.model.Operation;
+import ru.smoke.skill.finalproject.v1.model.Transfer;
 import ru.smoke.skill.finalproject.v1.service.EmployeeService;
 import ru.smoke.skill.finalproject.v1.service.OperationsService;
 
@@ -100,9 +101,12 @@ public class MyRestController {
     }
 
     @PostMapping("/transfermoney")
-    void transferMoney(@RequestBody long senderId,@RequestBody long recieverId, @RequestBody BigDecimal Money){
-        System.out.println(senderId+" "+recieverId+" "+Money);
-        employeeService.transferMoney(recieverId,senderId,Money);
+    void transferMoney(@RequestBody Transfer transfer){
+        Long senderId = transfer.getSenderId();
+        Long recieverId = transfer.getRecieverId();
+        BigDecimal Money = transfer.getMoney();
+        employeeService.transferMoney(recieverId, senderId,Money);
+        System.out.println(transfer);
     }
 
 
