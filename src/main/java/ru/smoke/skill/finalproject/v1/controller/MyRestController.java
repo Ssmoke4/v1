@@ -106,7 +106,7 @@ public class MyRestController {
         Long recieverId = transfer.getRecieverId();
         BigDecimal Money = transfer.getMoney();
         employeeService.transferMoney(recieverId, senderId,Money);
-        System.out.println(transfer);
+
     }
 
 

@@ -30,12 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void transferMoney(Long recieverId, long senderId, BigDecimal Money) {
+    public void transferMoney(Long recieverId, Long senderId, BigDecimal Money) {
         Employee senderEmployee = employeeRepo.getById(senderId);
         Employee recieverEmployee = employeeRepo.getById(recieverId);
         recieverEmployee.setBalance(recieverEmployee.getBalance().add(Money));
         senderEmployee.setBalance(senderEmployee.getBalance().subtract(Money));
-        System.out.println("Успешно");
+        employeeRepo.save(senderEmployee);
+        employeeRepo.save(recieverEmployee);
     }
 
 
